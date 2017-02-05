@@ -1,0 +1,38 @@
+<!-- Header -->
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Map</h2>
+            </div>
+        </div>
+    </div>
+</header>
+
+<div class="map content-wrapper w3-animate-opacity">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12 title-top">
+                <h2>Retrouvez nos partenaires</h2>
+                <hr class="star-primary">
+
+                <sebm-google-map [latitude]="lat" [longitude]="lng" [zoom]="zoom" [disableDefaultUI]="false" [zoomControl]="false" (mapClick)="mapClicked($event)">
+
+                    <sebm-google-map-marker *ngFor="let m of markers; let i = index" (markerClick)="clickedMarker(m.label, i)" [latitude]="m.lat" [longitude]="m.lng" [label]="m.label" [markerDraggable]="m.draggable" (dragEnd)="markerDragEnd(m, $event)">
+
+                        <sebm-google-map-info-window>
+                            <span>{{ m.name }}</span><br>
+                            <strong>{{ m.location }}</strong>
+                            <p>{{ m.description }}</p>
+                        </sebm-google-map-info-window>
+
+                    </sebm-google-map-marker>
+
+                    <!--<sebm-google-map-circle [latitude]="lat + 0.3" [longitude]="lng" [radius]="5000" [fillColor]="'red'" [circleDraggable]="true" [editable]="true">
+                    </sebm-google-map-circle>-->
+
+                </sebm-google-map>
+            </div>
+        </div>
+    </div>
+</div>

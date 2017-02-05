@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="playarshop application">
+    <meta name="author" content="florian delemarre">
+
+    <title>Game</title>
+
+    <link rel="stylesheet" href="TemplateData/style.css">
+    <link rel="shortcut icon" href="TemplateData/favicon.ico" />
+
+    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Animate CSS -->
+    <link href="css/animate.css" rel="stylesheet" media="all">
+
+    <!-- Custom CSS -->
+    <link href="css/styles.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <script src="TemplateData/UnityProgress.js"></script>
+
+</head>
+
+<body class="index" id="page-top" ng-app="" ng-init="merchant = {name:'Les Milles et Une Nappes',
+                    info:'Notre boutique les 1001 nappes est une entreprise familiale transmise de père en fils, depuis près de 30 ans. Spécialistes dans l'art de la table, nous vous proposons le plus grand assortiment de nappes en France. C'est au coeur de l'Alsace, terre textile, que nous vous invitons à venir découvrir nos 5000 nappes de fabrication française.',
+                    img:'img/marchand/1.jpg',
+                    logo:'img/marchand/logo/1.png'}">>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/"><img class="navbar-logo" src="img/logo.png" alt="logo">PlayARShop</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-navbar-collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="http://playarshop.com/">PlayARShop</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="http://playarshop.com/home">Home</a>
+                    </li>
+                    <li class="page-scroll active">
+                        <a href="http://playarshop.com/game">Game</a>
+                    </li>
+                    <li class="page-scroll">
+                        <a href="http://playarshop.com/statistic">Stats</a>
+                    </li>
+                    <li class="page-scroll dropdown" *ngIf="isAuthed">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="">
+                            <div class="circle-avatar" style="background-image:url(img/avatar.jpg)"></div>Admin
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a href=""><i class="fa fa-user"></i>Profil</a></li>
+                            <li><a href=""><i class="fa fa-envelope"></i>Contact</a></li>
+                            <li><a class="nav-link" href="/" (click)="logout()"><i class="fa fa-sign-out"></i>Logout</a></li>
+                        </ul>
+                    </li>
+
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Game</h2>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Usage Section -->
+    <section id="usage" class="parallax-window success" style="background-color: transparent;" data-parallax="scroll" data-image-src="{{ merchant.img }}">
+        <div class="container">
+            <div class="row">
+                <div class="text-center">
+                    <canvas class="emscripten" id="canvas" oncontextmenu="event.preventDefault()" height="600px" width="960px"></canvas>
+                    <br>
+                    <div class="logo"></div>
+                    <div class="fullscreen"><img src="TemplateData/fullscreen.png" width="38" height="38" alt="Fullscreen" title="Fullscreen" onclick="SetFullscreen(1);"
+                        /></div>
+                    <div class="title">PlayarshopWebApplication</div>
+                </div>
+                <p class="footer">&laquo; created with <a href="http://unity3d.com/" title="Go to unity3d.com">Unity</a> &raquo;</p>
+                <script type='text/javascript'>
+                    var Module = {
+    TOTAL_MEMORY: 268435456,
+    errorhandler: null,         // arguments: err, url, line. This function must return 'true' if the error is handled, otherwise 'false'
+    compatibilitycheck: null,
+    dataUrl: "Release/Playarshop.data",
+    codeUrl: "Release/Playarshop.js",
+    memUrl: "Release/Playarshop.mem",
+  };
+
+                </script>
+                <script src="Release/UnityLoader.js"></script>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="text-center">
+        <div class="footer-above">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col col-md-4">
+                        <h3>Localisation</h3>
+                        <p>Rennes<br>FRANCE</p>
+                    </div>
+                    <div class="footer-col col-md-4">
+                        <h3>Follow us</h3>
+                        <ul class="list-inline">
+                            <li>
+                                <a href="https://www.facebook.com/PlayARshop" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://plus.google.com/109545695760206157923/about" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
+                            </li>
+                            <li>
+                                <a href="https://twitter.com/PlayARshop" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
+                            </li>
+                            <li>
+                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="footer-col col-md-4">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        Copyright &copy; PlayARShop 2016
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Scroll to Top Button (Only visible on small and extra-small screen sizes) -->
+    <div class="scroll-top page-scroll visible-xs visible-sm">
+        <a class="btn btn-primary" href="#page-top">
+            <i class="fa fa-chevron-up"></i>
+        </a>
+    </div>
+
+    <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="js/classie.js"></script>
+    <script src="js/cbpAnimatedHeader.js"></script>
+    <script src="js/viewportchecker.js"></script>
+
+
+    <!-- Parallax -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+    <script src="js/parallax.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Custom Theme JavaScript 
+    <script src="js/playarshop.js"></script> -->
+
+</body>
+
+</html>

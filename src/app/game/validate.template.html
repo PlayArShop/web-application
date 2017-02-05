@@ -1,0 +1,40 @@
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Validate your game</h2>
+            </div>
+        </div>
+    </div>
+</header>
+<div class="row validate" *ngIf="type == 'shop'">
+    <div class="col-sm-12">
+        <div class="allgame">
+            <div class="w3-row">
+                <div class="w3-col m8 w3-center">
+                    <div class="w3-row-padding w3-margin-top">
+                        <div class="w3-third">
+                            <div class="w3-card-2 w3-hover-shadow">
+                                <div class="w3-display-container">
+                                    <img [src]="API_URL + company?.logo" />
+
+                                </div>
+                                <button class="w3-btn w3-btn-block w3-blue">{{ company?.name }}</button>
+                                <div class="w3-container w3-center">
+                                    <h4>{{ game?.ref }}</h4>
+                                    <h5><i class="fa fa-thumbs-up" aria-hidden="true"></i> {{ discount?.success }}</h5>
+                                    <h5><i class="fa fa-thumbs-down" aria-hidden="true"></i> {{ discount?.fail }}</h5>
+                                </div>
+                                <button class="w3-btn w3-btn-block" [ngStyle]="{'background-color': '#' + game?.color1}">#{{ game?.color1 }}</button>
+                                <button class="w3-btn w3-btn-block" [ngStyle]="{'background-color': '#' + game?.color2}">#{{ game?.color2 }}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="w3-btn-group" style="width:270px;">
+                <button class="w3-btn w3-blue" style="width:100%" (click)="validateGame()">Validate</button>
+            </div>
+        </div>
+    </div>
+</div>

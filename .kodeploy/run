@@ -1,0 +1,1 @@
+docker run -e NODE_ENV=production -p 8081:3000 -d playarshop/web-front

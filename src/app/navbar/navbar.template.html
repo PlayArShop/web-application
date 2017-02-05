@@ -1,0 +1,76 @@
+<nav class="navbar navbar-fixed-top">
+    <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header page-scroll">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" [routerLink]="['/']"><img class="navbar-logo" [src]="logo" alt="logo">PlayARShop</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="bs-navbar-collapse">
+            <!-- Navbar for landing page -->
+            <ul class="nav navbar-nav navbar-right landing" *ngIf="onLanding">
+                <li class="hidden">
+                    <a href="#page-top"></a>
+                </li>
+                <li class="page-scroll">
+                    <a href="#usage">Utilisation</a>
+                </li>
+                <li class="page-scroll">
+                    <a href="#about">A Propos</a>
+                </li>
+                <li class="page-scroll">
+                    <a href="#examples">Exemples</a>
+                </li>
+                <li class="page-scroll">
+                    <a href="#try">Essayer</a>
+                </li>
+                <li class="page-scroll">
+                    <a href="#contact">Contact</a>
+                </li>
+            </ul>
+
+            <!-- Navbar -->
+            <ul class="nav navbar-nav navbar-right" *ngIf="!onLanding">
+                <li class="hidden">
+                    <a class="nav-link" [routerLink]="['./']">PlayARShop</a>
+                </li>
+                <li class="page-scroll" *ngIf="!isAuthed">
+                    <a class="nav-link" [routerLink]="['./signup']">Signup</a>
+                </li>
+                <li class="page-scroll" *ngIf="!isAuthed">
+                    <a class="nav-link" [routerLink]="['./login']">Login</a>
+                </li>
+                <li class="page-scroll" *ngIf="isAuthed && isShop">
+                    <a class="nav-link" [routerLink]="['./home']">Home</a>
+                </li>
+                <li class="page-scroll" *ngIf="isAuthed && isShop">
+                    <a class="nav-link" [routerLink]="['./game']">Game</a>
+                </li>
+                <li class="page-scroll" *ngIf="isAuthed && isShop">
+                    <a class="nav-link" [routerLink]="['./statistic']">Stats</a>
+                </li>
+                <li class="page-scroll" *ngIf="isAuthed && !isShop">
+                    <a class="nav-link" [routerLink]="['./scores']">Scores</a>
+                </li>
+                <li class="page-scroll" *ngIf="isAuthed && !isShop">
+                    <a class="nav-link" [routerLink]="['./map']">Map</a>
+                </li>
+                <li class="page-scroll" *ngIf="isAuthed">
+                    <div class="w3-dropdown-hover">
+                        <button class="center-btn nav-link"><div class="circle-avatar" [ngStyle]="{ 'background-image': 'url(' + avatar + ')'}"></div></button>
+                        <div class="w3-dropdown-content w3-border">
+                            <a class="dropdown-link" [routerLink]="['./profile']"><i class="fa fa-user"></i>   Profil</a>
+                            <a class="dropdown-link" [routerLink]="['./login']" (click)="logout()"><i class="fa fa-sign-out"></i>   Logout</a>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>

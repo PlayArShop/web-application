@@ -1,0 +1,183 @@
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <!-- Nav tabs -->
+                <ul class="nav nav-pills nav-justified">
+                    <li><a (click)="valid = 'company'" data-toggle="tab">Company</a></li>
+                    <li><a (click)="valid = 'target'" data-toggle="tab">Target</a></li>
+                    <li><a (click)="valid = 'discount'" data-toggle="tab">Discount</a></li>
+                    <li><a (click)="valid = 'game'" data-toggle="tab">Game</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</header>
+
+<section id="usage" class="w3-animate-opacity">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <!--<div [innerHTML]="errorMessage"></div>-->
+                <!-- Tab panes -->
+                <div class="tab-content">
+                    <div [ngClass]="{active: valid == 'company'}" class="tab-pane fade in" id="company">
+                        <div class="row">
+                            <div class="col-lg-6 col-lg-offset-3 text-center">
+                                <h2>Company name</h2>
+                                <hr class="gamepad-primary">
+                                <p class="text-left">Enter your company's name</p>
+
+                                <div class="form-group">
+                                    <input [(ngModel)]="companyName" id="name" #name type="text" class="form-control" placeholder="Company name" required>
+                                    <p class="bg-danger" *ngIf="!name.value">Required</p>
+                                </div>
+                                <hr>
+                                <p class="text-left">Upload your logo</p>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label class="input-group-btn">
+                                          <span class="btn btn-info">
+                                            Browse&hellip; <input [(ngModel)]="companyLogo" type="file" (change)="onLogoChange(logo)" #logo style="display: none;" required>
+                                          </span> 
+                                        </label>
+                                        <input type="text" class="form-control" placeholder="{{ model.logo }} image" readonly>
+                                    </div>
+                                    <p class="help-block"></p>
+                                    <div class="row">
+                                        <div class="col-md-4 col-sm-6">
+                                            <a class="thumbnail text-right" *ngIf="model.logo">
+                                                <img [src]="model.logo" alt="" />
+                                                <button class="btn btn-danger delete btn-sm" (click)="deleteImage(i)">
+                          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <p class="help-block"></p>
+
+                                <button (click)="postCompany(name.value, model.logo)" type="button" class="btn btn-default">Next</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div [ngClass]="{active: valid == 'target'}" class="tab-pane fade in" id="target">
+                        <div class="row">
+                            <div class="col-lg-6 col-lg-offset-3 text-center">
+                                <h2>Upload a target</h2>
+                                <hr class="gamepad-primary">
+                                <p class="text-left">Upload your target to be able to launch your game</p>
+                                <div class="form-group">
+                                    <input id="place" #place type="text" class="form-control" placeholder="Place" required>
+                                    <p class="bg-danger" *ngIf="!place.value">Required</p>
+                                </div>
+                                <div class="form-group">
+                                    <input id="city" #city type="text" class="form-control" placeholder="City" required>
+                                    <p class="bg-danger" *ngIf="!city.value">Required</p>
+                                </div>
+                                <hr>
+                                <p class="text-left">Upload your target image</p>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <label class="input-group-btn">
+                                          <span class="btn btn-info">
+                                            Browse&hellip; <input type="file" multiple (change)="onImageChange(input)" #input style="display: none;" required>
+                                          </span> 
+                                        </label>
+                                        <input type="text" class="form-control" placeholder="{{ model.image }} images" readonly>
+                                    </div>
+                                    <p class="help-block"></p>
+
+                                    <div class="row">
+                                        <div *ngFor="let img of model.image; let i = index" class="col-md-4 col-sm-6">
+                                            <a class="thumbnail text-right">
+                                                <img src='{{ img }}' alt="" />
+                                                <button class="btn btn-danger delete btn-sm" (click)="deleteImage(i)">
+                          <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                        </button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                    <p class="help-block"></p>
+
+                                    <hr>
+                                    <button (click)="postTargets(place.value, city.value, model.image)" type="button" class="btn btn-default">Next</button>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div [ngClass]="{active: valid == 'discount'}" class="tab-pane fade in" id="discount">
+                        <div class="row">
+                            <div class="col-lg-6 col-lg-offset-3 text-center">
+                                <h2>Set discount</h2>
+                                <hr class="gamepad-primary">
+                                <p class="text-left">Select a discount</p>
+                                <div class="form-group">
+                                    <input id="success" #success type="text" class="form-control" placeholder="Success message" required>
+                                    <p class="bg-danger" *ngIf="!success.value">Required</p>
+                                </div>
+                                <div class="form-group">
+                                    <input id="fail" #fail type="text" class="form-control" placeholder="Fail message" required>
+                                    <p class="bg-danger" *ngIf="!fail.value">Required</p>
+                                </div>
+                                <hr>
+                                <p class="text-left">Select a level</p>
+                                <select id="level" #level class="form-control">
+                <option value="easy">easy</option>
+                <option value="medium">medium</option>
+                <option value="hard">hard</option>
+              </select>
+                                <hr>
+                                <button (click)="postDiscount(success.value, fail.value)" type="button" class="btn btn-default">Next</button>
+
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div [ngClass]="{active: valid == 'game'}" class="tab-pane fade in" id="game">
+                        <div class="row">
+                            <div class="col-lg-12 text-center">
+                                <h2>Pick a game</h2>
+                                <hr class="gamepad-primary">
+                                <p>Click on a game to edit it with your customization.</p>
+                                <a (click)="postGame(3)">
+                                    <div class="col-lg-4 text-center">
+                                        <div class="circle-icon">
+                                            <i class="fa fa-gavel"></i>
+                                        </div>
+                                        <h3>Hit’em</h3>
+                                        <p>hit anything over the board</p>
+                                    </div>
+                                </a>
+                                <a (click)="postGame(1)">
+                                    <div class="col-lg-4 text-center">
+                                        <div class="circle-icon">
+                                            <i class="fa fa-bullseye"></i>
+                                        </div>
+                                        <h3>Balloons</h3>
+                                        <p>balloons explode</p>
+                                    </div>
+                                </a>
+                                <a (click)="postGame(2)">
+                                    <div class="col-lg-4 text-center">
+                                        <div class="circle-icon">
+                                            <i class="fa fa-bitbucket"></i>
+                                        </div>
+                                        <h3>Beer Pong</h3>
+                                        <p>throw the ball in the glass</p>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

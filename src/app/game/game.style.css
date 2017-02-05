@@ -1,0 +1,93 @@
+.game {
+    text-align: center;
+    margin-top: 4%;
+    margin-bottom: 10%;
+    min-height: 300px;
+}
+
+.nav {
+    margin-top: 20px;
+}
+
+.ng-valid[required] {
+    border-left: 5px solid #42A948;
+    /* green */
+}
+
+.ng-invalid {
+    border-left: 5px solid #a94442;
+    /* red */
+}
+
+an-tablist {
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    background-color: #2a73be;
+    border-color: transparent;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.my-drop-zone {
+    border: dotted 3px lightgray;
+}
+
+.nv-file-over {
+    border: dotted 3px red;
+}
+
+
+/* Default class applied to drop zones on over */
+
+.another-file-over-class {
+    border: dotted 3px green;
+}
+
+img.preview {
+    background-color: #2a73be;
+    min-width: 500px;
+    height: 500px;
+    border: 0;
+}
+
+.bg-danger {
+    text-transform: none;
+    text-align: left;
+    font-size: 14px;
+    letter-spacing: 0;
+    padding-left: 5px;
+}
+
+section {
+    padding-top: 50px;
+}
+
+.nav-pills {
+    font-family: Montserrat, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav-pills>li.active>a,
+.nav-pills>li.active>a:hover,
+.nav-pills>li.active>a:focus {
+    background-color: #22527b;
+}
+
+.delete {
+    display: inline-block;
+    position: absolute;
+    bottom: 35px;
+    right: 27px;
+}
+
+a.thumbnail:hover,
+a.thumbnail:focus,
+a.thumbnail.active {
+    border-color: #2a73be;
+}
+
+[hidden] {
+    display: none;
+}

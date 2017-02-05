@@ -1,0 +1,47 @@
+#home {
+    margin-bottom: 10%;
+    min-height: 300px;
+}
+
+.prelogin {
+    margin-top: 2%;
+    margin-bottom: 10%;
+}
+
+.w3-card-4 {
+    height: 300px;
+}
+
+.w3-third {
+    margin-bottom: 30px;
+}
+
+.allgame {
+    left: 180px;
+    position: relative;
+}
+
+.ico {
+    margin-top: 70px;
+    height: 50px;
+    font-size: 50px;
+}
+
+.delete {
+    margin-top: 10px;
+    margin-right: 0px;
+}
+
+img {
+    margin-bottom: inherit;
+    max-width: 230px;
+    width: 100%;
+}
+
+button {
+    cursor: default;
+}
+
+button.delete {
+    cursor: pointer;
+}

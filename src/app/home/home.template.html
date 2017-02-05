@@ -1,0 +1,63 @@
+<!-- Header -->
+<header>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Home</h2>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Content -->
+<div id="home" class="w3-animate-opacity">
+    <div class="container title-top">
+        <div class="row">
+            <div class="col-lg-12 text-center">
+                <h2 *ngIf="!isGames() || type == 'player'">Welcome {{ type }}!</h2>
+                <h2 *ngIf="isGames()">Your games</h2>
+                <hr class="gamepad-primary">
+                <h2 *ngIf="!isGames() && type == 'shop'">You are on PlayARShop web application.<br>You can start to create a game now.</h2>
+                <h2 *ngIf="type == 'player'">You are on PlayARShop web application.<br>You can watch your score.</h2>
+                <hr *ngIf="isGames() && type == 'shop'">
+                <div class="allgame">
+                    <div class="w3-row" *ngIf="isGames() && type == 'shop'">
+                        <div class="w3-col m8 w3-center">
+                            <div class="w3-row-padding w3-margin-top">
+                                <div *ngFor="let game of games" class="w3-third">
+                                    <div class="w3-card-2 w3-hover-shadow">
+                                        <div class="w3-display-container">
+                                            <img [src]="API_URL + game.image" />
+
+                                            <div class="w3-display-topleft w3-container">
+                                                <button class="btn btn-danger delete btn-sm" (click)="deleteGame(game.id)">
+                                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                                        </button>
+                                            </div>
+                                        </div>
+                                        <button class="w3-btn w3-btn-block w3-blue">{{ game.id }}</button>
+                                        <div class="w3-container w3-center">
+                                            <h4>{{ game.name }}</h4>
+                                            <h5>{{ game.description }}</h5>
+                                        </div>
+                                        <button class="w3-btn w3-btn-block" [ngStyle]="{'background-color': '#' + game.color1}">#{{ game.color1 }}</button>
+                                        <button class="w3-btn w3-btn-block" [ngStyle]="{'background-color': '#' + game.color2}">#{{ game.color2 }}</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div *ngIf="type == 'shop'" class="w3-row-padding w3-container card">
+                    <div class="w3-card-4 w3-hover-shadow w3-center w3-blue w3-padding w3-animate-bottom w3-hover-opacity" [routerLink]="['../game']">
+                        <i class="fa fa-gamepad ico" aria-hidden="true"></i>
+                        <h1>Create a game</h1>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
